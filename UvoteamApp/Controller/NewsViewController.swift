@@ -20,19 +20,12 @@ final class NewsViewController: UIViewController {
         static let detailVC = "DetailViewController"
         static let detailSegue = "detailSegue"
     }
-    private let newsTitle = "Hello"
-    private let desc = "My name is blalala"
 
-    private var businessNews: [BusinessModel] = [] {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.newsTableView.reloadData()
-            }
-        }
-    }
+    private var items: [BusinessModel]?
+    private let path = URL(string: "http://feeds.reuters.com/reuters/businessNews")
     private var elementName: String = String()
-    var businessTitle = String()
-    var businessDisc = String()
+    private var businessTitle = String()
+    private var businessDisc = String()
 
     // MARK: - Lifecycle Methods
 
@@ -44,17 +37,25 @@ final class NewsViewController: UIViewController {
     // MARK: - Private Methods
 
     private func setupUI() {
-        let path = URL(string: "http://feeds.reuters.com/reuters/businessNews")
-        if let parser = XMLParser(contentsOf: path!) {
-            parser.delegate = self
-            parser.parse()
-        }
 
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "News"
         newsTableView.dataSource = self
         newsTableView.delegate = self
         newsTableView.register(UINib(nibName: NewsCell.identifier, bundle: nil), forCellReuseIdentifier: NewsCell.identifier)
+        fetchData()
+    }
+
+    private func fetchData() {
+        let newsParser = NewsParser()
+        newsParser.parseFeed(url: path!) { [weak self] (items) in
+            guard let self = self else { return }
+            self.items = items
+
+            DispatchQueue.main.async {
+                self.newsTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            }
+        }
     }
 
     private func reduceTitle(_ title: String) -> String {
@@ -69,14 +70,25 @@ final class NewsViewController: UIViewController {
         return newString
     }
 
+    private func formatDescription(str: String) -> String {
+        var newStr = String()
+        for char in str {
+            if char == "<" {
+                break
+            }
+            newStr.append(char)
+        }
+        return newStr
+    }
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = self.newsTableView.indexPathForSelectedRow else { return }
         guard let destVC = segue.destination as? DetailViewController else { return }
-        let title = businessNews[indexPath.row].title
+        let title = items![indexPath.row].title
         destVC.title = reduceTitle(title)
-        destVC.descriptionNews = businessNews[indexPath.row].description
+        destVC.descriptionNews = formatDescription(str: items![indexPath.row].description)
     }
 
 }
@@ -86,16 +98,20 @@ final class NewsViewController: UIViewController {
 
 extension NewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return businessNews.count
+        guard let items = items else {
+            return 0
+        }
+        return items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.identifier, for: indexPath) as? NewsCell else {
             return UITableViewCell()
         }
-        let news = businessNews[indexPath.row]
-        cell.titleLabel.text = news.title
-        cell.descriptionLabel.text = news.description
+
+        if let item = items?[indexPath.item] {
+            cell.item = item
+        }
         return cell
     }
 
@@ -111,32 +127,32 @@ extension NewsViewController: UITableViewDelegate {
     }
 }
 
-extension NewsViewController: XMLParserDelegate {
-
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        if elementName == "item" {
-            businessTitle = String()
-            businessDisc = String()
-        }
-        self.elementName = elementName
-    }
-
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "item" {
-            let news = BusinessModel(title: businessTitle, description: businessDisc)
-            businessNews.append(news)
-        }
-    }
-
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-
-        if (!data.isEmpty) {
-            if self.elementName == "title" {
-                businessTitle += data
-            } else if self.elementName == "description" {
-                businessDisc += data
-            }
-        }
-    }
-}
+//extension NewsViewController: XMLParserDelegate {
+//
+//    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+//        if elementName == "item" {
+//            businessTitle = String()
+//            businessDisc = String()
+//        }
+//        self.elementName = elementName
+//    }
+//
+//    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+//        if elementName == "item" {
+//            let news = BusinessModel(title: businessTitle, description: businessDisc)
+//            businessNews.append(news)
+//        }
+//    }
+//
+//    func parser(_ parser: XMLParser, foundCharacters string: String) {
+//        let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+//
+//        if (!data.isEmpty) {
+//            if self.elementName == "title" {
+//                businessTitle += data
+//            } else if self.elementName == "description" {
+//                businessDisc += data
+//            }
+//        }
+//    }
+//}

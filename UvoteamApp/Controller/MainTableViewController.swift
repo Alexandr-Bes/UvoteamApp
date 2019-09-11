@@ -65,6 +65,12 @@ final class MainTableViewController: UITableViewController {
         refreshController.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
     }
 
+    private func updateTableViewTitle() {
+        titleLabel = UserDefaults.standard.string(forKey: "Title")
+        modelArray[1].description = titleLabel
+        tableView.reloadData()
+    }
+
     @objc private func getTime(section: Int) {
         tableView.reloadData()
     }
@@ -72,17 +78,13 @@ final class MainTableViewController: UITableViewController {
     // Refreshing data when user pulls down to refresh the contents of the table.
     @objc private func refreshData(_ sender: Any) {
         refreshController.endRefreshing()
-        titleLabel = UserDefaults.standard.string(forKey: "Title")
-        modelArray[1].description = titleLabel
-        tableView.reloadData()
+        updateTableViewTitle()
     }
 
     // MARK: - Actions
     
     @IBAction func updateInfo(_ sender: Any) {
-        titleLabel = UserDefaults.standard.string(forKey: "Title")
-        modelArray[1].description = titleLabel
-        tableView.reloadData()
+        updateTableViewTitle()
     }
 
 
