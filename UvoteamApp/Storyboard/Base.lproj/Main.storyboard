@@ -63,7 +63,14 @@
                             <outlet property="delegate" destination="WcU-Ml-29F" id="9xw-Ed-R7C"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2BV-bY-3Mc"/>
+                    <navigationItem key="navigationItem" id="2BV-bY-3Mc">
+                        <barButtonItem key="rightBarButtonItem" title="Update" image="update" id="kcb-ai-XCd">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="updateInfo:" destination="WcU-Ml-29F" id="L6e-Ug-2Kr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHA-JZ-jvr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -88,6 +95,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="376" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="qLn-Yr-Cem" kind="show" identifier="detailSegue" id="VFT-M9-qGW"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -121,6 +131,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVo-U9-xIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-675.36231884057975" y="760.71428571428567"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="FZ9-Kx-7US">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" id="qLn-Yr-Cem" customClass="DetailViewController" customModule="UvoteamApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VJ8-aV-9Nz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ofk-jZ-tyk">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ofk-jZ-tyk" secondAttribute="bottom" id="Mzd-NJ-q61"/>
+                            <constraint firstItem="ofk-jZ-tyk" firstAttribute="top" secondItem="mfe-zF-0oo" secondAttribute="top" id="Nrz-an-TEK"/>
+                            <constraint firstItem="ofk-jZ-tyk" firstAttribute="leading" secondItem="mfe-zF-0oo" secondAttribute="leading" id="d2w-lI-q4t"/>
+                            <constraint firstItem="ofk-jZ-tyk" firstAttribute="trailing" secondItem="mfe-zF-0oo" secondAttribute="trailing" id="sil-ua-znt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mfe-zF-0oo"/>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="ofk-jZ-tyk" id="3K3-tb-KpA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sAV-aI-vcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79.710144927536234" y="763.39285714285711"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9gp-hJ-6Ip">
@@ -182,4 +225,7 @@
             <point key="canvasLocation" x="-2172" y="33"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="update" width="25" height="25"/>
+    </resources>
 </document>

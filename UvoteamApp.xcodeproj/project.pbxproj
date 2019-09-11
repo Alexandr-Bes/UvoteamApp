@@ -19,6 +19,7 @@
 		FA9743F22329122300A5343A /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743F02329122300A5343A /* NewsCell.swift */; };
 		FA9743F32329122300A5343A /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9743F12329122300A5343A /* NewsCell.xib */; };
 		FA9743F523291BB800A5343A /* BusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743F423291BB800A5343A /* BusinessModel.swift */; };
+		FA9743F72329377200A5343A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743F62329377200A5343A /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		FA9743F02329122300A5343A /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		FA9743F12329122300A5343A /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
 		FA9743F423291BB800A5343A /* BusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessModel.swift; sourceTree = "<group>"; };
+		FA9743F62329377200A5343A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				FA9743DE2327E18100A5343A /* MainTableViewController.swift */,
 				FA9743E02327E18900A5343A /* NewsViewController.swift */,
+				FA9743F62329377200A5343A /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9743F72329377200A5343A /* DetailViewController.swift in Sources */,
 				FA9743E12327E18900A5343A /* NewsViewController.swift in Sources */,
 				FA9743ED232849F900A5343A /* UITableViewCell+Extension.swift in Sources */,
 				FA9743CD2327E12300A5343A /* AppDelegate.swift in Sources */,

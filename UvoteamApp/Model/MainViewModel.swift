@@ -10,7 +10,7 @@ import Foundation
 
 struct MainViewModel {
     let title: String
-    let description: String?
+    var description: String?
 
     init(title: String, description: String) {
         self.title = title

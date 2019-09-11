@@ -11,9 +11,15 @@ import UIKit
 final class NewsViewController: UIViewController {
 
     // MARK: - Outlets
+
     @IBOutlet weak var newsTableView: UITableView!
 
     // MARK: - Properties
+
+    private struct Constants {
+        static let detailVC = "DetailViewController"
+        static let detailSegue = "detailSegue"
+    }
     private let newsTitle = "Hello"
     private let desc = "My name is blalala"
 
@@ -29,14 +35,15 @@ final class NewsViewController: UIViewController {
     var businessDisc = String()
 
     // MARK: - Lifecycle Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
 
     // MARK: - Private Methods
-    private func setupUI() {
 
+    private func setupUI() {
         let path = URL(string: "http://feeds.reuters.com/reuters/businessNews")
         if let parser = XMLParser(contentsOf: path!) {
             parser.delegate = self
@@ -50,10 +57,33 @@ final class NewsViewController: UIViewController {
         newsTableView.register(UINib(nibName: NewsCell.identifier, bundle: nil), forCellReuseIdentifier: NewsCell.identifier)
     }
 
+    private func reduceTitle(_ title: String) -> String {
+        let start = title.index(title.startIndex, offsetBy: 0)
+        let end = title.index(title.startIndex, offsetBy: 15)
+        let range = start...end
+        var newString = String(title[range])
+        newString = newString.replacingOccurrences(of: ",",
+                                                   with: "",
+                                                   options: NSString.CompareOptions.literal,
+                                                   range: nil)
+        return newString
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = self.newsTableView.indexPathForSelectedRow else { return }
+        guard let destVC = segue.destination as? DetailViewController else { return }
+        let title = businessNews[indexPath.row].title
+        destVC.title = reduceTitle(title)
+        destVC.descriptionNews = businessNews[indexPath.row].description
+    }
+
 }
 
 
 // MARK: - Table View Data Source Methods
+
 extension NewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return businessNews.count
@@ -73,8 +103,10 @@ extension NewsViewController: UITableViewDataSource {
 
 
 // MARK: - Table View Delegate Methods
+
 extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constants.detailSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
