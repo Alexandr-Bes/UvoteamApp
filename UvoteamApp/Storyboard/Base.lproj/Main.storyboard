@@ -27,17 +27,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="M2B-WV-2td">
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="M2B-WV-2td">
                                             <rect key="frame" x="28" y="14.5" width="374" height="20.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBj-Je-pM9">
-                                                    <rect key="frame" x="0.0" y="0.0" width="324" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="183" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EvI-hQ-hhR">
-                                                    <rect key="frame" x="332" y="0.0" width="42" height="20.5"/>
+                                                    <rect key="frame" x="191" y="0.0" width="183" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -118,10 +118,13 @@
                             <rect key="frame" x="106.5" y="7" width="201" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="First" width="100"/>
-                                <segment title="Second" width="100"/>
+                                <segment title="Business" width="100"/>
+                                <segment title="Others" width="100"/>
                             </segments>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="changeNewsSegmentedControl:" destination="PVn-cC-pSu" eventType="valueChanged" id="ywe-Ks-e51"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>
@@ -141,19 +144,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ofk-jZ-tyk">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="16" y="104" width="382" height="792"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ofk-jZ-tyk" secondAttribute="bottom" id="Mzd-NJ-q61"/>
-                            <constraint firstItem="ofk-jZ-tyk" firstAttribute="top" secondItem="mfe-zF-0oo" secondAttribute="top" id="Nrz-an-TEK"/>
-                            <constraint firstItem="ofk-jZ-tyk" firstAttribute="leading" secondItem="mfe-zF-0oo" secondAttribute="leading" id="d2w-lI-q4t"/>
-                            <constraint firstItem="ofk-jZ-tyk" firstAttribute="trailing" secondItem="mfe-zF-0oo" secondAttribute="trailing" id="sil-ua-znt"/>
+                            <constraint firstItem="ofk-jZ-tyk" firstAttribute="leading" secondItem="mfe-zF-0oo" secondAttribute="leading" constant="16" id="KWE-v5-Zxc"/>
+                            <constraint firstAttribute="bottom" secondItem="ofk-jZ-tyk" secondAttribute="bottom" id="LF6-Cl-Jm5"/>
+                            <constraint firstItem="ofk-jZ-tyk" firstAttribute="top" secondItem="mfe-zF-0oo" secondAttribute="top" constant="16" id="t8f-Yi-SKF"/>
+                            <constraint firstItem="mfe-zF-0oo" firstAttribute="trailing" secondItem="ofk-jZ-tyk" secondAttribute="trailing" constant="16" id="vKY-Lg-Ak8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mfe-zF-0oo"/>
                     </view>

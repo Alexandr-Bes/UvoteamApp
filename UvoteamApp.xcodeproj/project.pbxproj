@@ -18,9 +18,10 @@
 		FA9743EF23284CA900A5343A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743EE23284CA900A5343A /* MainViewModel.swift */; };
 		FA9743F22329122300A5343A /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743F02329122300A5343A /* NewsCell.swift */; };
 		FA9743F32329122300A5343A /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9743F12329122300A5343A /* NewsCell.xib */; };
-		FA9743F523291BB800A5343A /* BusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743F423291BB800A5343A /* BusinessModel.swift */; };
+		FA9743F523291BB800A5343A /* BasicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743F423291BB800A5343A /* BasicModel.swift */; };
 		FA9743F72329377200A5343A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743F62329377200A5343A /* DetailViewController.swift */; };
 		FA9743F9232958DE00A5343A /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743F8232958DD00A5343A /* XMLParser.swift */; };
+		FA9743FC2329911E00A5343A /* NetworkEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743FB2329911E00A5343A /* NetworkEndpoints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +38,10 @@
 		FA9743EE23284CA900A5343A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		FA9743F02329122300A5343A /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		FA9743F12329122300A5343A /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
-		FA9743F423291BB800A5343A /* BusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessModel.swift; sourceTree = "<group>"; };
+		FA9743F423291BB800A5343A /* BasicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicModel.swift; sourceTree = "<group>"; };
 		FA9743F62329377200A5343A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FA9743F8232958DD00A5343A /* XMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
+		FA9743FB2329911E00A5343A /* NetworkEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEndpoints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				FA9743CC2327E12300A5343A /* AppDelegate.swift */,
 				FA9743E52327E1B400A5343A /* Support Files */,
+				FA9743FA232990F100A5343A /* Network */,
 				FA9743EA2328474200A5343A /* Table View Cells */,
 				FA9743E42327E1A400A5343A /* Controller */,
 				FA9743E32327E19900A5343A /* Storyboard */,
@@ -87,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				FA9743EE23284CA900A5343A /* MainViewModel.swift */,
-				FA9743F423291BB800A5343A /* BusinessModel.swift */,
+				FA9743F423291BB800A5343A /* BasicModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -137,6 +140,14 @@
 				FA9743EC232849F900A5343A /* UITableViewCell+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA9743FA232990F100A5343A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FA9743FB2329911E00A5343A /* NetworkEndpoints.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,11 +227,12 @@
 				FA9743ED232849F900A5343A /* UITableViewCell+Extension.swift in Sources */,
 				FA9743CD2327E12300A5343A /* AppDelegate.swift in Sources */,
 				FA9743F9232958DE00A5343A /* XMLParser.swift in Sources */,
-				FA9743F523291BB800A5343A /* BusinessModel.swift in Sources */,
+				FA9743F523291BB800A5343A /* BasicModel.swift in Sources */,
 				FA9743F22329122300A5343A /* NewsCell.swift in Sources */,
 				FA9743E82328473700A5343A /* GeneralInfoCell.swift in Sources */,
 				FA9743DF2327E18100A5343A /* MainTableViewController.swift in Sources */,
 				FA9743EF23284CA900A5343A /* MainViewModel.swift in Sources */,
+				FA9743FC2329911E00A5343A /* NetworkEndpoints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

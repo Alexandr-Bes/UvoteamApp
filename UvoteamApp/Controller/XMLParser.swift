@@ -9,7 +9,7 @@
 import Foundation
 
 class NewsParser: NSObject, XMLParserDelegate {
-    private var items: [BusinessModel] = []
+    private var items: [BasicModel] = []
     private var currentElement = ""
     private var currentTitle = "" {
         didSet {
@@ -21,9 +21,9 @@ class NewsParser: NSObject, XMLParserDelegate {
             currentDescription = currentDescription.trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
-    private var parserComplitionHandler: (([BusinessModel]) -> Void)?
+    private var parserComplitionHandler: (([BasicModel]) -> Void)?
 
-    func parseFeed(url: URL, completionHandler: (([BusinessModel]) -> Void)?) {
+    func parseFeed(url: URL, completionHandler: (([BasicModel]) -> Void)?) {
         self.parserComplitionHandler = completionHandler
 
         let request = URLRequest(url: url)
@@ -65,7 +65,7 @@ class NewsParser: NSObject, XMLParserDelegate {
 
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
-            let newItem = BusinessModel(title: currentTitle, description: currentDescription)
+            let newItem = BasicModel(title: currentTitle, description: currentDescription)
             self.items.append(newItem)
         }
     }

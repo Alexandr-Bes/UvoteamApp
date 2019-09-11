@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BusinessModel {
+struct BasicModel {
     var title: String
     var description: String
 }
