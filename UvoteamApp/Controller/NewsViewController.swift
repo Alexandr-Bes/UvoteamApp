@@ -10,6 +10,7 @@ import UIKit
 
 class NewsViewController: UIViewController {
 
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
