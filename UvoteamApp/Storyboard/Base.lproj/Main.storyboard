@@ -77,22 +77,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Zpi-fu-cnb">
-                                <rect key="frame" x="16" y="96" width="382" height="29"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="bLQ-Zt-Rxd">
-                                <rect key="frame" x="0.0" y="132" width="414" height="764"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newsCell" rowHeight="35" id="cCA-gm-D54">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="35"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="newsCell" rowHeight="50" id="cCA-gm-D54">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cCA-gm-D54" id="4PV-Jp-6v3">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="34.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -102,21 +95,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Zpi-fu-cnb" firstAttribute="leading" secondItem="Eeo-Nh-yYU" secondAttribute="leading" constant="16" id="0ZE-1r-fBp"/>
                             <constraint firstAttribute="bottom" secondItem="bLQ-Zt-Rxd" secondAttribute="bottom" id="35J-dl-aE4"/>
-                            <constraint firstItem="Eeo-Nh-yYU" firstAttribute="trailing" secondItem="Zpi-fu-cnb" secondAttribute="trailing" constant="16" id="Hjk-mO-QpF"/>
+                            <constraint firstItem="bLQ-Zt-Rxd" firstAttribute="top" secondItem="Eeo-Nh-yYU" secondAttribute="top" id="Hha-3R-5uj"/>
                             <constraint firstItem="Eeo-Nh-yYU" firstAttribute="trailing" secondItem="bLQ-Zt-Rxd" secondAttribute="trailing" id="J84-je-pCZ"/>
-                            <constraint firstItem="Zpi-fu-cnb" firstAttribute="top" secondItem="Eeo-Nh-yYU" secondAttribute="top" constant="8" id="U8G-Q9-zEV"/>
-                            <constraint firstItem="bLQ-Zt-Rxd" firstAttribute="top" secondItem="Zpi-fu-cnb" secondAttribute="bottom" constant="8" id="nVu-pt-brk"/>
                             <constraint firstItem="bLQ-Zt-Rxd" firstAttribute="leading" secondItem="Eeo-Nh-yYU" secondAttribute="leading" id="wpn-qD-P3V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Eeo-Nh-yYU"/>
                     </view>
-                    <navigationItem key="navigationItem" id="tco-JZ-Sc2"/>
+                    <navigationItem key="navigationItem" id="tco-JZ-Sc2">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="olc-Ve-dN4">
+                            <rect key="frame" x="106.5" y="7" width="201" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="First" width="100"/>
+                                <segment title="Second" width="100"/>
+                            </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="newsTableView" destination="bLQ-Zt-Rxd" id="FYm-ds-pbZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVo-U9-xIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-674" y="761"/>
+            <point key="canvasLocation" x="-675.36231884057975" y="760.71428571428567"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9gp-hJ-6Ip">

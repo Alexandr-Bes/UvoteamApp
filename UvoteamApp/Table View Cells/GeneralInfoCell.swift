@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GeneralInfoCell: UITableViewCell {
+final class GeneralInfoCell: UITableViewCell {
 
     // MARK: - Outlets
 
