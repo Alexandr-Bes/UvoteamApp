@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
 
     // MARK: - Private Methods
     private func setupUI() {
+        navigationController?.navigationBar.prefersLargeTitles = false
         descriptionTextView.text = descriptionNews
         UserDefaults.standard.set(self.title, forKey: "Title")
     }

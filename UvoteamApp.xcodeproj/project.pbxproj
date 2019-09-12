@@ -22,6 +22,8 @@
 		FA9743F72329377200A5343A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743F62329377200A5343A /* DetailViewController.swift */; };
 		FA9743F9232958DE00A5343A /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743F8232958DD00A5343A /* XMLParser.swift */; };
 		FA9743FC2329911E00A5343A /* NetworkEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743FB2329911E00A5343A /* NetworkEndpoints.swift */; };
+		FA9743FE232A32FB00A5343A /* BusinessNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743FD232A32FB00A5343A /* BusinessNewsViewController.swift */; };
+		FA974400232A330E00A5343A /* OthersNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9743FF232A330E00A5343A /* OthersNewsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		FA9743F62329377200A5343A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FA9743F8232958DD00A5343A /* XMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		FA9743FB2329911E00A5343A /* NetworkEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEndpoints.swift; sourceTree = "<group>"; };
+		FA9743FD232A32FB00A5343A /* BusinessNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessNewsViewController.swift; sourceTree = "<group>"; };
+		FA9743FF232A330E00A5343A /* OthersNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersNewsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 			children = (
 				FA9743DE2327E18100A5343A /* MainTableViewController.swift */,
 				FA9743E02327E18900A5343A /* NewsViewController.swift */,
+				FA9743FD232A32FB00A5343A /* BusinessNewsViewController.swift */,
+				FA9743FF232A330E00A5343A /* OthersNewsViewController.swift */,
 				FA9743F62329377200A5343A /* DetailViewController.swift */,
 				FA9743F8232958DD00A5343A /* XMLParser.swift */,
 			);
@@ -224,10 +230,12 @@
 			files = (
 				FA9743F72329377200A5343A /* DetailViewController.swift in Sources */,
 				FA9743E12327E18900A5343A /* NewsViewController.swift in Sources */,
+				FA974400232A330E00A5343A /* OthersNewsViewController.swift in Sources */,
 				FA9743ED232849F900A5343A /* UITableViewCell+Extension.swift in Sources */,
 				FA9743CD2327E12300A5343A /* AppDelegate.swift in Sources */,
 				FA9743F9232958DE00A5343A /* XMLParser.swift in Sources */,
 				FA9743F523291BB800A5343A /* BasicModel.swift in Sources */,
+				FA9743FE232A32FB00A5343A /* BusinessNewsViewController.swift in Sources */,
 				FA9743F22329122300A5343A /* NewsCell.swift in Sources */,
 				FA9743E82328473700A5343A /* GeneralInfoCell.swift in Sources */,
 				FA9743DF2327E18100A5343A /* MainTableViewController.swift in Sources */,

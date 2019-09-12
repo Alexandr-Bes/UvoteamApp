@@ -12,18 +12,38 @@ final class NewsViewController: UIViewController {
 
     // MARK: - Outlets
 
-    @IBOutlet weak var newsTableView: UITableView!
-
+    @IBOutlet weak var chooseNewsSegmentedControl: UISegmentedControl!
+    
     // MARK: - Private Properties
 
     private struct Constants {
         static let detailVC = "DetailViewController"
         static let detailSegue = "detailSegue"
+        static let businessNewsVC = "BusinessNewsViewController"
+        static let othersNewsVC = "OthersNewsViewController"
+        static let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     }
-    private var businessNews: [BasicModel]?
-    private var entertainmentNews: [BasicModel]?
-    private var environmentNews: [BasicModel]?
-    private var titleForHeader = "Business News"
+
+    private lazy var businessNewsVC: BusinessNewsViewController = {
+
+        var viewController = Constants.mainStoryboard.instantiateViewController(withIdentifier: Constants.businessNewsVC) as! BusinessNewsViewController
+
+        // Adding View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+
+        return viewController
+    }()
+
+    private lazy var othersNewsVC: OthersNewsViewController = {
+
+        var viewController = Constants.mainStoryboard.instantiateViewController(withIdentifier: Constants.othersNewsVC) as! OthersNewsViewController
+
+        // Adding View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+
+        return viewController
+    }()
+
 
     // MARK: - Lifecycle Methods
 
@@ -37,111 +57,66 @@ final class NewsViewController: UIViewController {
     private func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "News"
-        newsTableView.dataSource = self
-        newsTableView.delegate = self
-        newsTableView.rowHeight = 130
-        newsTableView.register(UINib(nibName: NewsCell.identifier, bundle: nil), forCellReuseIdentifier: NewsCell.identifier)
-        fetchData(businessNews: true)
+        setupSegmentedControl()
+        updateView()
     }
 
-    private func fetchData(businessNews: Bool) {
-        let newsParser = NewsParser()
-        if businessNews {
-            newsParser.parseFeed(url: NetworkEndpoints.businessNews!) { [weak self] (items) in
-                guard let self = self else { return }
-                self.businessNews = items
-                DispatchQueue.main.async {
-                    self.newsTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-                }
-            }
+    private func setupSegmentedControl() {
+        // Configure Segmented Control
+        chooseNewsSegmentedControl.removeAllSegments()
+        chooseNewsSegmentedControl.insertSegment(withTitle: "Business", at: 0, animated: false)
+        chooseNewsSegmentedControl.insertSegment(withTitle: "Others", at: 1, animated: false)
+        chooseNewsSegmentedControl.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
+        chooseNewsSegmentedControl.selectedSegmentIndex = 0
+    }
+
+    @objc func selectionDidChange(_ sender: UISegmentedControl) {
+        updateView()
+    }
+
+    private func updateView() {
+        if chooseNewsSegmentedControl.selectedSegmentIndex == 0 {
+            remove(asChildViewController: othersNewsVC)
+            add(asChildViewController: businessNewsVC)
         } else {
-            newsParser.parseFeed(url: NetworkEndpoints.entertainmentNews!) { [weak self] (items) in
-                guard let self = self else { return }
-                self.entertainmentNews = items
-                DispatchQueue.main.async {
-                    self.newsTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-                }
-            }
-            newsParser.parseFeed(url: NetworkEndpoints.environmentNews!) { [weak self] (items) in
-                guard let self = self else { return }
-                self.environmentNews = items
-                DispatchQueue.main.async {
-                    self.newsTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-                }
-            }
+            remove(asChildViewController: businessNewsVC)
+            add(asChildViewController: othersNewsVC)
         }
     }
 
-    private func formatDescription(str: String) -> String {
-        var newStr = String()
-        for char in str {
-            if char == "<" {
-                break
-            }
-            newStr.append(char)
-        }
-        return newStr
+    private func add(asChildViewController viewController: UIViewController) {
+        // Add Child View Controller
+        addChild(viewController)
+
+        // Add Child View as Subview
+        view.addSubview(viewController.view)
+
+        // Configure Child View
+        viewController.view.frame = view.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+        // Notify Child View Controller
+        viewController.didMove(toParent: self)
     }
+
+    private func remove(asChildViewController viewController: UIViewController) {
+        // Notify Child View Controller
+        viewController.willMove(toParent: nil)
+
+        // Remove Child View From Superview
+        viewController.view.removeFromSuperview()
+
+        // Notify Child View Controller
+        viewController.removeFromParent()
+    }
+
 
     // MARK: - Actions
 
-    @IBAction func changeNewsSegmentedControl(_ sender: UISegmentedControl) {
-        let index = sender.selectedSegmentIndex
-        if index == 1 {
-            fetchData(businessNews: false)
-        } else {
-            fetchData(businessNews: true)
-        }
-    }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indexPath = self.newsTableView.indexPathForSelectedRow else { return }
-        guard let destVC = segue.destination as? DetailViewController else { return }
-        let title = businessNews![indexPath.row].title
-        destVC.title = title
-        destVC.descriptionNews = formatDescription(str: businessNews![indexPath.row].description)
-    }
+//    @IBAction func changeNewsSegmentedControl(_ sender: UISegmentedControl) {
+//        let index = sender.selectedSegmentIndex
+//    }
 
 }
 
-
-// MARK: - Table View Data Source Methods
-
-extension NewsViewController: UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let items = businessNews else {
-            return 0
-        }
-        return items.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.identifier, for: indexPath) as? NewsCell else {
-            return UITableViewCell()
-        }
-
-        if let item = businessNews?[indexPath.item] {
-            cell.item = item
-        }
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return titleForHeader
-    }
-
-}
-
-
-// MARK: - Table View Delegate Methods
-
-extension NewsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: Constants.detailSegue, sender: self)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
 

@@ -76,16 +76,16 @@
             </objects>
             <point key="canvasLocation" x="-2172" y="761"/>
         </scene>
-        <!--News View Controller-->
-        <scene sceneID="DTI-ce-li8">
+        <!--Business News View Controller-->
+        <scene sceneID="5qX-av-w9i">
             <objects>
-                <viewController storyboardIdentifier="NewsViewController" id="PVn-cC-pSu" customClass="NewsViewController" customModule="UvoteamApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bcA-DU-4FI">
+                <viewController storyboardIdentifier="BusinessNewsViewController" id="cCa-Ze-YHQ" customClass="BusinessNewsViewController" customModule="UvoteamApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YUO-91-L0j">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="bLQ-Zt-Rxd">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="newsCell" rowHeight="50" id="cCA-gm-D54">
@@ -105,11 +105,73 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="bLQ-Zt-Rxd" secondAttribute="bottom" id="35J-dl-aE4"/>
-                            <constraint firstItem="bLQ-Zt-Rxd" firstAttribute="top" secondItem="Eeo-Nh-yYU" secondAttribute="top" id="Hha-3R-5uj"/>
-                            <constraint firstItem="Eeo-Nh-yYU" firstAttribute="trailing" secondItem="bLQ-Zt-Rxd" secondAttribute="trailing" id="J84-je-pCZ"/>
-                            <constraint firstItem="bLQ-Zt-Rxd" firstAttribute="leading" secondItem="Eeo-Nh-yYU" secondAttribute="leading" id="wpn-qD-P3V"/>
+                            <constraint firstItem="bLQ-Zt-Rxd" firstAttribute="leading" secondItem="Ker-iK-6iP" secondAttribute="leading" id="Ghs-5P-OtH"/>
+                            <constraint firstItem="bLQ-Zt-Rxd" firstAttribute="trailing" secondItem="Ker-iK-6iP" secondAttribute="trailing" id="Iso-da-jJ7"/>
+                            <constraint firstAttribute="bottom" secondItem="bLQ-Zt-Rxd" secondAttribute="bottom" id="VgM-v0-2h2"/>
+                            <constraint firstItem="bLQ-Zt-Rxd" firstAttribute="top" secondItem="YUO-91-L0j" secondAttribute="top" id="zgC-Na-r83"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ker-iK-6iP"/>
+                    </view>
+                    <connections>
+                        <outlet property="businessNewsTableView" destination="bLQ-Zt-Rxd" id="Jg0-x5-eQg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2hj-Zf-Ps7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1093" y="1440"/>
+        </scene>
+        <!--Others News View Controller-->
+        <scene sceneID="9PG-n5-yNK">
+            <objects>
+                <viewController storyboardIdentifier="OthersNewsViewController" id="J4e-Zy-zXM" customClass="OthersNewsViewController" customModule="UvoteamApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hlM-S1-zCH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="MDh-lD-K1m">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="newsCell" rowHeight="50" id="Ybm-M3-grd">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ybm-M3-grd" id="Fx0-gd-OXC">
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="qLn-Yr-Cem" kind="show" identifier="detailSegue" id="3ew-36-PiK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="MDh-lD-K1m" secondAttribute="bottom" id="LfK-Vi-fdy"/>
+                            <constraint firstItem="MDh-lD-K1m" firstAttribute="leading" secondItem="5nd-e8-dLj" secondAttribute="leading" id="OLj-vb-hjy"/>
+                            <constraint firstItem="MDh-lD-K1m" firstAttribute="trailing" secondItem="5nd-e8-dLj" secondAttribute="trailing" id="Z6A-cr-bSU"/>
+                            <constraint firstItem="MDh-lD-K1m" firstAttribute="top" secondItem="hlM-S1-zCH" secondAttribute="top" id="jcx-qq-gSb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5nd-e8-dLj"/>
+                    </view>
+                    <connections>
+                        <outlet property="othersNewsTableView" destination="MDh-lD-K1m" id="7Xy-q0-S18"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sxF-Ro-XMB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-222" y="1440"/>
+        </scene>
+        <!--News View Controller-->
+        <scene sceneID="DTI-ce-li8">
+            <objects>
+                <viewController storyboardIdentifier="NewsViewController" id="PVn-cC-pSu" customClass="NewsViewController" customModule="UvoteamApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bcA-DU-4FI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Eeo-Nh-yYU"/>
                     </view>
                     <navigationItem key="navigationItem" id="tco-JZ-Sc2">
@@ -122,18 +184,15 @@
                                 <segment title="Others" width="100"/>
                             </segments>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="changeNewsSegmentedControl:" destination="PVn-cC-pSu" eventType="valueChanged" id="ywe-Ks-e51"/>
-                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>
-                        <outlet property="newsTableView" destination="bLQ-Zt-Rxd" id="FYm-ds-pbZ"/>
+                        <outlet property="chooseNewsSegmentedControl" destination="olc-Ve-dN4" id="TdN-uv-f5V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVo-U9-xIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-675.36231884057975" y="760.71428571428567"/>
+            <point key="canvasLocation" x="-700" y="761"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="FZ9-Kx-7US">
@@ -144,7 +203,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ofk-jZ-tyk">
-                                <rect key="frame" x="16" y="104" width="382" height="792"/>
+                                <rect key="frame" x="16" y="60" width="382" height="836"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -166,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAV-aI-vcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79.710144927536234" y="763.39285714285711"/>
+            <point key="canvasLocation" x="-700" y="2225"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9gp-hJ-6Ip">
@@ -231,4 +290,7 @@
     <resources>
         <image name="update" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="3ew-36-PiK"/>
+    </inferredMetricsTieBreakers>
 </document>
