@@ -250,7 +250,7 @@
         <scene sceneID="T35-ZT-VMZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gi2-Ph-qXN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" id="CAl-32-pln"/>
+                    <tabBarItem key="tabBarItem" title="News" image="news" id="CAl-32-pln"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="8dW-gN-786">
@@ -270,7 +270,7 @@
         <scene sceneID="YsU-Fp-jfO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pVQ-8p-Ypz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3LJ-jN-auI"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="main-info" id="3LJ-jN-auI"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="YCl-hw-kr0">
@@ -288,6 +288,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="main-info" width="25" height="25"/>
+        <image name="news" width="25" height="25"/>
         <image name="update" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>

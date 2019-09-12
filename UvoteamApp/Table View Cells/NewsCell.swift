@@ -24,8 +24,19 @@ final class NewsCell: UITableViewCell {
     var item: BasicModel! {
         didSet {
             titleLabel.text = item.title
-            descriptionLabel.text = item.description
+            descriptionLabel.text = formatDescription(str: item.description)
         }
+    }
+
+    private func formatDescription(str: String) -> String {
+        var newStr = String()
+        for char in str {
+            if char == "<" {
+                break
+            }
+            newStr.append(char)
+        }
+        return newStr
     }
     
 }

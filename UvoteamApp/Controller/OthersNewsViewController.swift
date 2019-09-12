@@ -22,13 +22,12 @@ final class OthersNewsViewController: UIViewController {
     }
     private var entertainmentNews: [BasicModel]?
     private var environmentNews: [BasicModel]?
-    private var titleForHeader = "EntertainmentNews News"
+    private var titleForHeader = "Entertainment News"
 
     // MARK: - Lifecycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupIU()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,21 +46,22 @@ final class OthersNewsViewController: UIViewController {
     }
 
     private func fetchData() {
-        let newsParser = NewsParser()
-        newsParser.parseFeed(url: NetworkEndpoints.entertainmentNews!) { [weak self] (items) in
+        let entertainmentParser = NewsParser()
+        entertainmentParser.parseFeed(url: NetworkEndpoints.entertainmentNews!) { [weak self] (items) in
             guard let self = self else { return }
             self.entertainmentNews = items
-            DispatchQueue.main.async {
+            OperationQueue.main.addOperation {
                 self.othersNewsTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
             }
         }
-//        newsParser.parseFeed(url: NetworkEndpoints.environmentNews!) { [weak self] (items) in
-//            guard let self = self else { return }
-//            self.environmentNews = items
-//            DispatchQueue.main.async {
-//                self.othersNewsTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-//            }
-//        }
+        let environmentParser = NewsParser()
+        environmentParser.parseFeed(url: NetworkEndpoints.environmentNews!) { [weak self] (items) in
+            guard let self = self else { return }
+            self.environmentNews = items
+            OperationQueue.main.addOperation {
+                self.othersNewsTableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+            }
+        }
     }
 
     private func formatDescription(str: String) -> String {
@@ -81,9 +81,18 @@ final class OthersNewsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = self.othersNewsTableView.indexPathForSelectedRow else { return }
         guard let destVC = segue.destination as? DetailViewController else { return }
-        let title = entertainmentNews![indexPath.row].title
-        destVC.title = title
-        destVC.descriptionNews = formatDescription(str: entertainmentNews![indexPath.row].description)
+
+        // TODO: - not only entertainmentNews
+        switch indexPath.section {
+        case 0:
+            destVC.title = entertainmentNews![indexPath.row].title
+            destVC.descriptionNews = formatDescription(str: entertainmentNews![indexPath.row].description)
+        case 1:
+            destVC.title = environmentNews![indexPath.row].title
+            destVC.descriptionNews = formatDescription(str: environmentNews![indexPath.row].description)
+        default:
+            break
+        }
     }
 
 }
@@ -93,26 +102,62 @@ final class OthersNewsViewController: UIViewController {
 
 extension OthersNewsViewController: UITableViewDataSource {
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let items = entertainmentNews else {
-            return 0
+
+        switch section {
+        case 0:
+            guard let items = entertainmentNews else {
+                return 0
+            }
+            return items.count
+        case 1:
+            guard let items = environmentNews else {
+                return 0
+            }
+            return items.count
+        default:
+            break
         }
-        return items.count
+        return section
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.identifier, for: indexPath) as? NewsCell else {
+                return UITableViewCell()
+            }
+            if let item = entertainmentNews?[indexPath.item] {
+                cell.item = item
+            }
+            return cell
+        default:
+            break
+        }
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.identifier, for: indexPath) as? NewsCell else {
             return UITableViewCell()
         }
-
-        if let item = entertainmentNews?[indexPath.item] {
+        if let item = environmentNews?[indexPath.item] {
             cell.item = item
         }
         return cell
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return titleForHeader
+        switch section {
+        case 0:
+            return titleForHeader
+        case 1:
+            return "Environment News"
+        default:
+            return ""
+        }
     }
 
 }
